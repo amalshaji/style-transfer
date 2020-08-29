@@ -1,0 +1,5 @@
+**/.vscode
+style-transfer/
+**/__pycache__
+*.png
+*.jpg
