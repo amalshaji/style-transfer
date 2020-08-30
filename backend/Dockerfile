@@ -8,6 +8,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 8000
+EXPOSE 8080
 
-CMD ["uvicorn", "main:app"]
+CMD ["python", "main.py"]
