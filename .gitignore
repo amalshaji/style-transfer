@@ -4,3 +4,4 @@ style-transfer/
 *.png
 *.jpg
 ./backend/models/
+storage/
