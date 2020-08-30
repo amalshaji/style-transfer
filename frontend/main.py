@@ -22,16 +22,14 @@ st.set_option("deprecation.showfileUploaderEncoding", False)
 
 st.title("Style transfer web app")
 
-image = st.file_uploader("Upload your image...", type=["jpg", "png", "jpeg"])
+image = st.file_uploader("Choose an image")
 
 style = st.selectbox("Choose the style", [i for i in STYLES.keys()])
 
 if st.button("Style Transfer"):
     if image is not None and style is not None:
-        shape = Image.open(image).shape
         files = {"file": image.getvalue()}
-        res = requests.post(f"http://localhost:8000/{style}", files=files)
-        image = np.frombuffer(res.content, dtype="float64")
-        st.write(image.shape)
-        image = np.reshape(image, (shape[0], shape[1]))
-        st.write(image.shape)
+        res = requests.post(f"http://backend:8080/{style}", files=files)
+        img_path = res.json()
+        image = Image.open(img_path.get("name"))
+        st.image(image)
