@@ -7,6 +7,7 @@ from PIL import Image
 import numpy as np
 import cv2
 import uvicorn
+import uuid
 
 
 app = FastAPI()
@@ -23,8 +24,9 @@ def get_image(style: str, file: UploadFile = File(...)):
     print(image.shape)
     model = config.STYLES[style]
     output, resized = inference.inference(model, image)
-    cv2.imwrite("output.jpg", output)
-    return output.tolist()
+    name = f"/storage/{str(uuid.uuid4())}.jpg"
+    cv2.imwrite(name, output)
+    return {"name": name}
 
 
 if __name__ == "__main__":
