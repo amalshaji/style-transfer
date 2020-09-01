@@ -32,4 +32,4 @@ if st.button("Style Transfer"):
         res = requests.post(f"http://backend:8080/{style}", files=files)
         img_path = res.json()
         image = Image.open(img_path.get("name"))
-        st.image(image)
+        st.image(image, width=500)

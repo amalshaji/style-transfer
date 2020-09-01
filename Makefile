@@ -8,3 +8,4 @@ restart:
 
 down:
 	docker-compose down
+	

@@ -5,3 +5,4 @@ style-transfer/
 *.jpg
 ./backend/models/
 storage/
+venv/
