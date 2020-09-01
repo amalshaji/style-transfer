@@ -1,10 +1,6 @@
-import io
-import json
-import base64
-import streamlit as st
-from PIL import Image
-import numpy as np
 import requests
+from PIL import Image
+import streamlit as st
 
 STYLES = {
     "candy": "candy",
