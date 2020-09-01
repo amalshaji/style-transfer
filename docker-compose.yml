@@ -1,17 +1,17 @@
-version: '3'
-services: 
+version: "3"
+services:
     frontend:
         build: frontend
-        ports: 
+        ports:
             - "8501:8501"
-        depends_on: 
+        depends_on:
             - backend
-        volumes: 
+        volumes:
             - "./storage:/storage"
 
     backend:
         build: backend
-        ports: 
+        ports:
             - "8080:8080"
-        volumes: 
+        volumes:
             - "./storage:/storage"
