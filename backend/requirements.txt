@@ -4,3 +4,4 @@ pillow
 numpy
 python-multipart
 opencv-python
+asyncio
