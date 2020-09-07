@@ -1,5 +1,5 @@
-import cv2
 import config
+import cv2
 
 
 def inference(model, image):
