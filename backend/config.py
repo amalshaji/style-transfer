@@ -1,6 +1,4 @@
-ART_IMAGE_PATH = './art/'
-
-MODEL_PATH = './models/'
+MODEL_PATH = "./models/"
 
 STYLES = {
     "candy": "candy",
@@ -11,5 +9,5 @@ STYLES = {
     "starry night": "starry_night",
     "the scream": "the_scream",
     "the wave": "the_wave",
-    "udnie": "udnie"
+    "udnie": "udnie",
 }
