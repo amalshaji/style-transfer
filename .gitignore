@@ -3,6 +3,7 @@ style-transfer/
 **/__pycache__
 *.png
 *.jpg
-./backend/models/
+*/models/
 storage/
 venv/
+env/
