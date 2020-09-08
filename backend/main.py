@@ -1,17 +1,19 @@
-import config
-import inference
-import base64
-from pydantic import BaseModel
-from fastapi import FastAPI, File, UploadFile
-from PIL import Image
-import numpy as np
-import cv2
-import uvicorn
+import asyncio
+import time
 import uuid
 from concurrent.futures import ProcessPoolExecutor
 from functools import partial
-import asyncio
-import time
+
+import cv2
+import uvicorn
+from fastapi import File
+from fastapi import FastAPI
+from fastapi import UploadFile
+import numpy as np
+from PIL import Image
+
+import config
+import inference
 
 
 app = FastAPI()
@@ -19,7 +21,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to API"}
+    return {"message": "Welcome from the API"}
 
 
 async def combine_images(output, resized, name):
@@ -44,17 +46,11 @@ async def get_image(style: str, file: UploadFile = File(...)):
 
 
 async def generate_remaining_models(models, image, name: str):
-    # models = config.STYLES.copy()
-    # del models[created_model]
-
     executor = ProcessPoolExecutor()
     event_loop = asyncio.get_event_loop()
-    try:
-        await event_loop.run_in_executor(
-            executor, partial(process_image, models, image, name)
-        )
-    finally:
-        event_loop.close()
+    await event_loop.run_in_executor(
+        executor, partial(process_image, models, image, name)
+    )
 
 
 def process_image(models, image, name: str):
@@ -62,7 +58,6 @@ def process_image(models, image, name: str):
         output, resized = inference.inference(models[model], image)
         name = name.split(".")[0]
         name = f"{name.split('_')[0]}_{models[model]}.jpg"
-        print(name)
         cv2.imwrite(name, output)
 
 
