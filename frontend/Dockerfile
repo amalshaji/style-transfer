@@ -1,5 +1,6 @@
 FROM python:3.10.1-slim
 
+ENV GIT_PYTHON_REFRESH=quiet
 WORKDIR /app
 
 COPY requirements.txt .
